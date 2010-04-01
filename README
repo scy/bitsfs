@@ -1,5 +1,5 @@
-BitsFS  -  e pluribus unum
-==========================
+BitsFS  -  ex uno plura
+=======================
 
 BitsFS is a FUSE-based virtual file system which provides a single virtual big
 file which will be stored as a lot of small physical files representing equally
