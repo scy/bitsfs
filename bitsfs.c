@@ -31,12 +31,12 @@ static int bits_isfile(const char *path) {
 
 /* path has to be of size BITS_PHYS_MAX. */
 static int bits_otop(off_t offset, const char *path, int create) {
-	char *pathpos = path;
+	char *pathpos = (char *) path;
 	strcpy(pathpos, bits_physdir);
 	pathpos += strlen(bits_physdir);
 	for (int i = 0; i < sizeof(off_t); i++) {
 		sprintf(pathpos, "/%02x",
-		        ((offset >> (8 * (sizeof(off_t) - i - 1))) & 0xff));
+		        (unsigned int) ((offset >> (8 * (sizeof(off_t) - i - 1))) & 0xff));
 		pathpos += 3;
 		if (create && i < sizeof(off_t) - 1) {
 			if (mkdir(path, bits_dirmode) < 0 && errno != EEXIST)
@@ -257,7 +257,7 @@ static struct fuse_operations bits_oper = {
 
 int main(int argc, char *argv[]) {
 	if (strlen(bits_physdir) + 3 * sizeof(off_t) >= BITS_PHYS_MAX) {
-		printf("physdir may not be larger than %lud\n",
+		printf("physdir may not be larger than %ud\n",
 		       BITS_PHYS_MAX - 3 * sizeof(off_t) - 1);
 		return (EXIT_FAILURE);
 	}
