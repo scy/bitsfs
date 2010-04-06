@@ -258,7 +258,7 @@ static struct fuse_operations bits_oper = {
 int main(int argc, char *argv[]) {
 	if (strlen(bits_physdir) + 3 * sizeof(off_t) >= BITS_PHYS_MAX) {
 		printf("physdir may not be larger than %ud\n",
-		       BITS_PHYS_MAX - 3 * sizeof(off_t) - 1);
+		       BITS_PHYS_MAX - 3 * (int) sizeof(off_t) - 1);
 		return (EXIT_FAILURE);
 	}
 	bits_totalsize = bits_blockcount * bits_blocksize;
