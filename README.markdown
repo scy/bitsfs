@@ -58,8 +58,8 @@ That said, the chances of deleting unrelated data are quite low. Write and read
 tests we did worked flawlessly, but we do not trust it enough to store our
 backups yet.
 
-BitsFS is currently (April 2010) being actively developed and should go beta
-this month. Testing and reporting things is encouraged; writing large patches
+BitsFS development is currently (April 2010) being paused, but should continue
+in May. Testing and reporting things is encouraged; writing large patches
 however not yet.
 
 
