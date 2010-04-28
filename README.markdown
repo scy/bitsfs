@@ -19,7 +19,7 @@ backdoor or something like that - which still does not solve your trust problem.
 What you want is to encrypt the data using standard tools like dmcrypt, which
 unfortunately only works on block devices.
 
-You could create a crypto container file of, say, 200 MB, use losetup to create
+You could create a crypto container file of, say, 200 MB, use losetup to create
 a block device out of it, run dmcrypt on this block device and backup your data
 to it. However, since you will probably not be able to use rsync to send your
 container file to the remote machine, you will have to upload the whole file
@@ -50,9 +50,9 @@ Current Status
 This is an alpha version. It basically works, but not all features are present.
 Additionally, the only way to configure it is by editing the source code.
 
-PLEASE DO NOT YET TRUST BITSFS TO STORE YOUR DATA. It may crash, write data the
-wrong way and later not be able to read it back, or might even remove data that
-is completely unrelated. USE AT YOUR OWN RISK.
+**PLEASE DO NOT YET TRUST BITSFS TO STORE YOUR DATA.**
+It may crash, write data the wrong way and later not be able to read it back, or
+might even remove data that is completely unrelated. *USE AT YOUR OWN RISK.*
 
 That said, the chances of deleting unrelated data are quite low. Write and read
 tests we did worked flawlessly, but we do not trust it enough to store our
@@ -66,19 +66,19 @@ however not yet.
 Compiling
 ---------
 
-"make". The "bitsfs" binary will be generated. If this does not work, get in
+`make`. The `bitsfs` binary will be generated. If this does not work, get in
 touch with us.
 
 
 Basic Usage
 -----------
 
-mount remote:/filesystem /whereever
-mkdir /whereever/bitsfs
-cd /whereever/bitsfs
-bitsfs /mnt/bitsfs
-losetup -f /mnt/bitsfs/bits_file
-cryptsetup luksCreate ... /dev/loopX
-cryptsetup luksOpen /dev/loopX cryptbits
-mk*fs /dev/mapper/cryptbits
-mount /dev/mapper/cryptsbits /mnt/backups
+	mount remote:/filesystem /whereever
+	mkdir /whereever/bitsfs
+	cd /whereever/bitsfs
+	bitsfs /mnt/bitsfs
+	losetup -f /mnt/bitsfs/bits_file
+	cryptsetup luksCreate ... /dev/loopX
+	cryptsetup luksOpen /dev/loopX cryptbits
+	mk*fs /dev/mapper/cryptbits
+	mount /dev/mapper/cryptsbits /mnt/backups
